@@ -14,6 +14,8 @@
 		0C833B3529EF464C001A0894 /* HabitudeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C833B3429EF464C001A0894 /* HabitudeTests.swift */; };
 		0C833B3F29EF464C001A0894 /* HabitudeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C833B3E29EF464C001A0894 /* HabitudeUITests.swift */; };
 		0C833B4129EF464C001A0894 /* HabitudeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C833B4029EF464C001A0894 /* HabitudeUITestsLaunchTests.swift */; };
+		0C95AF5029F07236008603DF /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C95AF4F29F07236008603DF /* Task.swift */; };
+		0C95AF5229F07322008603DF /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C95AF5129F07322008603DF /* Day.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		0C833B3A29EF464C001A0894 /* HabitudeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabitudeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C833B3E29EF464C001A0894 /* HabitudeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitudeUITests.swift; sourceTree = "<group>"; };
 		0C833B4029EF464C001A0894 /* HabitudeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitudeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0C95AF4F29F07236008603DF /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		0C95AF5129F07322008603DF /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 		0C833B2229EF464B001A0894 /* Habitude */ = {
 			isa = PBXGroup;
 			children = (
+				0C95AF5329F073D8008603DF /* Objects */,
 				0C833B2329EF464B001A0894 /* HabitudeApp.swift */,
 				0C833B2529EF464B001A0894 /* ContentView.swift */,
 				0C833B2729EF464C001A0894 /* Assets.xcassets */,
@@ -125,6 +130,15 @@
 				0C833B4029EF464C001A0894 /* HabitudeUITestsLaunchTests.swift */,
 			);
 			path = HabitudeUITests;
+			sourceTree = "<group>";
+		};
+		0C95AF5329F073D8008603DF /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				0C95AF4F29F07236008603DF /* Task.swift */,
+				0C95AF5129F07322008603DF /* Day.swift */,
+			);
+			path = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +272,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C833B2629EF464B001A0894 /* ContentView.swift in Sources */,
+				0C95AF5029F07236008603DF /* Task.swift in Sources */,
+				0C95AF5229F07322008603DF /* Day.swift in Sources */,
 				0C833B2429EF464B001A0894 /* HabitudeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
