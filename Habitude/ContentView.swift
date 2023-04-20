@@ -6,14 +6,22 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ContentView: View {
+    
+    @State var signedIn : Bool = false
+    
+    let db = Firestore.firestore()
+    let dateHandler = DateHandlerVC()
+    
     var body: some View {
         VStack {
-            Text("V.9")
+            Text("w.\(dateHandler.getWeekOfYear())")
                 .padding()
-            Spacer()
-
+            Text(dateHandler.getDayOfWeek())
+                .padding()
+            
             List() {
                 ForEach(1...5, id: \.self) { index in
             
@@ -22,6 +30,8 @@ struct ContentView: View {
                 }
             }
             
+        }.onAppear() {
+//            db.collection("test").addDocument(data: ["task": "Code"])
         }
     }
 }
