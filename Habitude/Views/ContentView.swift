@@ -10,10 +10,12 @@ import Firebase
 
 struct ContentView: View {
     
+    @StateObject var userData = UserDataVM()
     @State var signedIn : Bool = false
+    @State var tasks = [Task]()
     
     let db = Firestore.firestore()
-    let dateHandler = DateHandlerVC()
+    let dateHandler = DateHandlerVM()
     
     var body: some View {
         
@@ -21,14 +23,18 @@ struct ContentView: View {
             Text("w.\(dateHandler.getWeekOfYear())")
                 .bold()
                 .padding()
+                .font(.title3)
             Text(dateHandler.getDayOfWeek())
+                .bold()
+                .padding()
+                .font(.title)
             Spacer()
             
             NavigationStack{
                 List() {
-                    ForEach(1...5, id: \.self) { index in
+                    ForEach(userData.tasks) { task in
                 
-                        Text("Task")
+                        RowView(task: task, userData: userData)
                         
                     }
                 }.navigationTitle("Tasks")
@@ -36,7 +42,7 @@ struct ContentView: View {
             
             
         }.onAppear() {
-//            db.collection("test").addDocument(data: ["task": "Code"])
+            userData.listenToFirestore()
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  DateHandlerVC.swift
+//  DateHandlerVM.swift
 //  Habitude
 //
 //  Created by Philip Andersson on 2023-04-20.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct DateHandlerVC {
+struct DateHandlerVM {
     
-    private let date = Date()
-    private let calendar : Calendar = Calendar.current
+    private let date = Date() // Create a new date object for the current date and time
+    private let calendar : Calendar = Calendar.current // Get the current calendar
     
     func getDayOfWeek() -> String {
         
@@ -61,7 +61,7 @@ struct DateHandlerVC {
     }
     
     func getWeekOfYear() -> Int {
-        return calendar.component(.weekOfYear, from: date)
+        return calendar.component(.weekOfYear, from: date) // Get the week of the year component from the date object
     }
     
     func setWeekOfYear(date : Date) -> Int {
