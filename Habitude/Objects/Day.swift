@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct Day {
+struct Day : Codable {
     
-    let weekday : String
-    let date : Date
+    @DocumentID var id : String?
+    
+    var weekday : String
+    var date : Date
     var tasks : [Task] = []
     var tasksDone : [Task] = []
     var perfectDay : Bool

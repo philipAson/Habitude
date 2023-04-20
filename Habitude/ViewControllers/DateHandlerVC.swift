@@ -13,6 +13,31 @@ struct DateHandlerVC {
     private let calendar : Calendar = Calendar.current
     
     func getDayOfWeek() -> String {
+        
+        let weekday = calendar.component(.weekday, from: date)
+        switch weekday {
+        case 1:
+            return "Sunday"
+        case 2:
+            return "Monday"
+        case 3:
+            return "Tuesday"
+        case 4:
+            return "Wednsday"
+        case 5:
+            return "Thursday"
+        case 6:
+            return "Friday"
+        case 7:
+            return "Saturday"
+        default:
+            return "Invalid weekday"
+            
+        }
+    }
+    
+    func setDayOfWeek(date : Date) -> String {
+        
         let weekday = calendar.component(.weekday, from: date)
         switch weekday {
         case 1:
@@ -36,6 +61,10 @@ struct DateHandlerVC {
     }
     
     func getWeekOfYear() -> Int {
+        return calendar.component(.weekOfYear, from: date)
+    }
+    
+    func setWeekOfYear(date : Date) -> Int {
         return calendar.component(.weekOfYear, from: date)
     }
     

@@ -16,19 +16,24 @@ struct ContentView: View {
     let dateHandler = DateHandlerVC()
     
     var body: some View {
+        
         VStack {
             Text("w.\(dateHandler.getWeekOfYear())")
+                .bold()
                 .padding()
             Text(dateHandler.getDayOfWeek())
-                .padding()
+            Spacer()
             
-            List() {
-                ForEach(1...5, id: \.self) { index in
-            
-                    Text("Task")
-                    
-                }
+            NavigationStack{
+                List() {
+                    ForEach(1...5, id: \.self) { index in
+                
+                        Text("Task")
+                        
+                    }
+                }.navigationTitle("Tasks")
             }
+            
             
         }.onAppear() {
 //            db.collection("test").addDocument(data: ["task": "Code"])

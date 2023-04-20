@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct Task {
+struct Task : Codable {
     
-    let name : String
+    @DocumentID var id : String?
+    
+    var name : String
     var weekDays : [String]
     var color : String
     var isReturningTask : Bool
