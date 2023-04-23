@@ -24,6 +24,8 @@
 		0C833B4129EF464C001A0894 /* HabitudeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C833B4029EF464C001A0894 /* HabitudeUITestsLaunchTests.swift */; };
 		0C95AF5029F07236008603DF /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C95AF4F29F07236008603DF /* Task.swift */; };
 		0C95AF5229F07322008603DF /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C95AF5129F07322008603DF /* Day.swift */; };
+		0CF997FF29F5AB340084A1CC /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF997FE29F5AB340084A1CC /* CreateTaskView.swift */; };
+		0CF9980129F5ACD00084A1CC /* DayPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF9980029F5ACD00084A1CC /* DayPlannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		0C833B4029EF464C001A0894 /* HabitudeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitudeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0C95AF4F29F07236008603DF /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		0C95AF5129F07322008603DF /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		0CF997FE29F5AB340084A1CC /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
+		0CF9980029F5ACD00084A1CC /* DayPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPlannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				0C833B2529EF464B001A0894 /* ContentView.swift */,
 				0C5502BA29F16AF30019B242 /* RowView.swift */,
 				0C5502B829F169510019B242 /* MainView.swift */,
+				0CF997FE29F5AB340084A1CC /* CreateTaskView.swift */,
+				0CF9980029F5ACD00084A1CC /* DayPlannerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -321,8 +327,10 @@
 				0C5502B929F169510019B242 /* MainView.swift in Sources */,
 				0C5502B429F12FE50019B242 /* DateHandlerVM.swift in Sources */,
 				0C95AF5029F07236008603DF /* Task.swift in Sources */,
+				0CF9980129F5ACD00084A1CC /* DayPlannerView.swift in Sources */,
 				0C95AF5229F07322008603DF /* Day.swift in Sources */,
 				0C833B2429EF464B001A0894 /* HabitudeApp.swift in Sources */,
+				0CF997FF29F5AB340084A1CC /* CreateTaskView.swift in Sources */,
 				0C5502BB29F16AF30019B242 /* RowView.swift in Sources */,
 				0C5502C029F17F8E0019B242 /* UserDataVM.swift in Sources */,
 			);

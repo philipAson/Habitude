@@ -16,7 +16,7 @@ struct ContentView : View {
         if !signedIn {
             SignInView(signedIn: $signedIn)
         } else {
-            ToDoView()
+            MainView()
         }
     }
 }
