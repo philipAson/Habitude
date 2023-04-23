@@ -8,11 +8,47 @@
 import SwiftUI
 import Firebase
 
-struct ContentView: View {
+struct ContentView : View {
+    
+    @State var signedIn : Bool = false
+    
+    var body: some View {
+        if !signedIn {
+            SignInView(signedIn: $signedIn)
+        } else {
+            ToDoView()
+        }
+    }
+}
+
+struct SignInView : View {
+    
+    @Binding var signedIn : Bool
+    
+    var auth = Auth.auth()
+    
+    var body: some View {
+        Button(action: {
+            auth.signInAnonymously { result, error in
+                if let _ = error {
+                    print("error signing in")
+                } else {
+                    signedIn = true
+                }
+            }
+        }) {
+            Text("Sign In ")
+        }
+    }
+}
+
+struct ToDoView: View {
     
     @StateObject var userData = UserDataVM()
-    @State var signedIn : Bool = false
-    @State var tasks = [Task]()
+    
+    @State var showingCreateTaskAlert = false
+    @State var showingListOfTasks = false
+   
     
     let db = Firestore.firestore()
     let dateHandler = DateHandlerVM()
@@ -37,10 +73,8 @@ struct ContentView: View {
                         RowView(task: task, userData: userData)
                         
                     }
-                }.navigationTitle("Tasks")
+                }.navigationTitle("Today")
             }
-            
-            
         }.onAppear() {
             userData.listenToFirestore()
         }
@@ -49,6 +83,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ToDoView()
     }
 }

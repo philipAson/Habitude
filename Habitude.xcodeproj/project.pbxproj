@@ -12,7 +12,6 @@
 		0C5502B029F11DE70019B242 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0C5502AF29F11DE70019B242 /* FirebaseFirestoreSwift */; };
 		0C5502B229F121340019B242 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C5502B129F121340019B242 /* GoogleService-Info.plist */; };
 		0C5502B429F12FE50019B242 /* DateHandlerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5502B329F12FE50019B242 /* DateHandlerVM.swift */; };
-		0C5502B729F167220019B242 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5502B629F167220019B242 /* TaskRowView.swift */; };
 		0C5502B929F169510019B242 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5502B829F169510019B242 /* MainView.swift */; };
 		0C5502BB29F16AF30019B242 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5502BA29F16AF30019B242 /* RowView.swift */; };
 		0C5502C029F17F8E0019B242 /* UserDataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5502BF29F17F8E0019B242 /* UserDataVM.swift */; };
@@ -47,7 +46,6 @@
 /* Begin PBXFileReference section */
 		0C5502B129F121340019B242 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0C5502B329F12FE50019B242 /* DateHandlerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandlerVM.swift; sourceTree = "<group>"; };
-		0C5502B629F167220019B242 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 		0C5502B829F169510019B242 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0C5502BA29F16AF30019B242 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		0C5502BF29F17F8E0019B242 /* UserDataVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataVM.swift; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 		0C5502BC29F16B170019B242 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0C5502B629F167220019B242 /* TaskRowView.swift */,
 				0C833B2529EF464B001A0894 /* ContentView.swift */,
 				0C5502BA29F16AF30019B242 /* RowView.swift */,
 				0C5502B829F169510019B242 /* MainView.swift */,
@@ -325,7 +322,6 @@
 				0C5502B429F12FE50019B242 /* DateHandlerVM.swift in Sources */,
 				0C95AF5029F07236008603DF /* Task.swift in Sources */,
 				0C95AF5229F07322008603DF /* Day.swift in Sources */,
-				0C5502B729F167220019B242 /* TaskRowView.swift in Sources */,
 				0C833B2429EF464B001A0894 /* HabitudeApp.swift in Sources */,
 				0C5502BB29F16AF30019B242 /* RowView.swift in Sources */,
 				0C5502C029F17F8E0019B242 /* UserDataVM.swift in Sources */,

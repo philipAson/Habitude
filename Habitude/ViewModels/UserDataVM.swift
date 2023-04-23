@@ -10,22 +10,38 @@ import SwiftUI
 import Firebase
 
 class UserDataVM : ObservableObject {
+    
     let db = Firestore.firestore()
     let auth = Auth.auth()
     
     @Published var tasks = [Task]()
     
+    func toggleReturning(task : Task) {
+        
+        guard let user = auth.currentUser else {return}
+        let userTasks = db.collection("users").document(user.uid).collection("tasks")
+        
+        if let id = task.id {
+            userTasks.document(id).updateData(["isReturningTask" : !task.isReturningTask])
+        }
+    }
+    
     func saveTaskToFirestore(task : Task) {
+        guard let user = auth.currentUser else {return}
+        let userTasks = db.collection("users").document(user.uid).collection("tasks")
         
         do {
-            try db.collection("Tasks").addDocument(from: task)
+            try userTasks.addDocument(from: task)
         } catch {
             print("error saving task to firestore")
         }
     }
 
     func listenToFirestore() {
-        db.collection("Tasks").addSnapshotListener() {
+        guard let user = auth.currentUser else {return}
+        let userTasks = db.collection("users").document(user.uid).collection("tasks")
+        
+        userTasks.addSnapshotListener() {
             snapshot, err in
             
             guard let snapshot = snapshot else {return}
