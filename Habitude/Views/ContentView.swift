@@ -49,7 +49,7 @@ struct ToDoView: View {
     @State var showingCreateTaskAlert = false
     @State var showingListOfTasks = false
    
-    
+    let today = Date()
     let db = Firestore.firestore()
     let dateHandler = DateHandlerVM()
     
@@ -68,7 +68,7 @@ struct ToDoView: View {
             
             NavigationStack{
                 List() {
-                    ForEach(userData.tasks) { task in
+                    ForEach(userData.loadTasksforThis(day: today)) { task in
                 
                         RowView(task: task, userData: userData)
                         

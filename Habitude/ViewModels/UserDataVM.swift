@@ -13,6 +13,7 @@ class UserDataVM : ObservableObject {
     
     let db = Firestore.firestore()
     let auth = Auth.auth()
+    let dateHandler = DateHandlerVM()
     
     @Published var tasks = [Task]()
     
@@ -53,6 +54,17 @@ class UserDataVM : ObservableObject {
         }
     }
     
-    
+    func loadTasksforThis(day : Date) -> [Task] {
+        var todaysTasks : [Task] = []
+        let choosenDay = dateHandler.setDayOfWeek(date: day)
+        
+        for task in tasks {
+            if task.weekDays.contains(choosenDay){
+                todaysTasks.append(task)
+            }
+        }
+        
+        return todaysTasks
+    }
 }
 

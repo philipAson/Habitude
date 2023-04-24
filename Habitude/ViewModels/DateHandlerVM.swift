@@ -5,6 +5,7 @@
 //  Created by Philip Andersson on 2023-04-20.
 //
 
+import UIKit
 import Foundation
 
 struct DateHandlerVM {
@@ -67,5 +68,18 @@ struct DateHandlerVM {
     func setWeekOfYear(date : Date) -> Int {
         return calendar.component(.weekOfYear, from: date)
     }
+    
+//    func loadTasksforThis(day : Date) -> [Task] {
+//        var todaysTasks : [Task] = []
+//        let choosenDay = setDayOfWeek(date: day)
+//
+//        for task in userdata.tasks {
+//            if task.weekDays.contains(choosenDay){
+//                todaysTasks.append(task)
+//            }
+//        }
+//
+//        return todaysTasks
+//    }
     
 }

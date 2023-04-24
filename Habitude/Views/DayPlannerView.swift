@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct DayPlannerView: View {
+    
+    @State private var today = Date.now
+    
+    @StateObject var userData = UserDataVM()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            DatePicker(selection: $today, in : ...Date.now, displayedComponents: .date) {
+                Text("Select a date")
+            }
+            Text("skit")
+            List() {
+                ForEach(userData.tasks) { task in
+                    RowView(task: task, userData: userData)
+                }
+                
+            }
+        }.onAppear() {
+            userData.listenToFirestore()
+        }
+        
     }
 }
 
