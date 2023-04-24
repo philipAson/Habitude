@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CreateTaskView: View {
     
+    @StateObject var userData = UserDataVM()
+    
     @State var taskName : String = ""
     @State var taskIsReturning : Bool = false
     @State var weekdays: [String] = ["Monday", "Tuesday", "Wednsday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -49,15 +51,40 @@ struct CreateTaskView: View {
                 }
             }
             .padding()
-            Picker("Please choose a color", selection: $choosenColor) {
-                ForEach(colors.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
-                    Text(key)
-                        .accentColor(.blue)
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(colors.sorted(by: { $0.key < $1.key}), id: \.key) { key, value in
+                        Circle()
+                            .foregroundColor(value)
+                            .frame(width: 45, height: 45)
+                            .opacity(key == choosenColor ? 0.5 : 1.0)
+                            .scaleEffect(key == choosenColor ? 1.1 : 1.0)
+                            .onTapGesture {
+                                choosenColor = key
+                            }
+                    }
                 }
-            }.pickerStyle(SegmentedPickerStyle())
+                .padding()
+                .background(.thinMaterial)
+                .cornerRadius(45)
+                .padding(.horizontal)
+            }
+            Button("SPARA") {
+                print($choosenColor)
+                print($daysSelected)
+                print($taskName)
+                
+                
+                
+                let newTask = Task(name: taskName, weekDays: daysSelected, color: choosenColor)
+                    
+                userData.saveTaskToFirestore(task: newTask)
+        
+            }
             .padding()
-            Spacer()
-            
+            .background(.thinMaterial)
+            .cornerRadius(45)
+            .padding(.horizontal)
         }
     }
 }

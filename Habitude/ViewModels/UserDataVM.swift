@@ -16,16 +16,6 @@ class UserDataVM : ObservableObject {
     
     @Published var tasks = [Task]()
     
-    func toggleReturning(task : Task) {
-        
-        guard let user = auth.currentUser else {return}
-        let userTasks = db.collection("users").document(user.uid).collection("tasks")
-        
-        if let id = task.id {
-            userTasks.document(id).updateData(["isReturningTask" : !task.isReturningTask])
-        }
-    }
-    
     func saveTaskToFirestore(task : Task) {
         guard let user = auth.currentUser else {return}
         let userTasks = db.collection("users").document(user.uid).collection("tasks")

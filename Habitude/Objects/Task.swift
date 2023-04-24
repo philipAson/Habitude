@@ -15,5 +15,4 @@ struct Task : Codable, Identifiable {
     var name : String
     var weekDays : [String]
     var color : String
-    var isReturningTask : Bool
 }
