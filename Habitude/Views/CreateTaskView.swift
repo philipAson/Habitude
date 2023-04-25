@@ -11,11 +11,14 @@ struct CreateTaskView: View {
     
     @StateObject var userData = UserDataVM()
     
+    @FocusState private var isFocused: Bool
+    
     @State var taskName : String = ""
     @State var taskIsReturning : Bool = false
     @State var weekdays: [String] = ["Monday", "Tuesday", "Wednsday", "Thursday", "Friday", "Saturday", "Sunday"]
     @State var daysSelected: [String] = []
     @State var choosenColor : String = ""
+    
     
     let colors: [String: Color] = ["orange": .orange, "teal": .teal, "cyan": .cyan, "mint": .mint, "blue": .blue, "black": .black]
     
@@ -26,6 +29,7 @@ struct CreateTaskView: View {
                 .font(.largeTitle)
                 .bold()
             TextField("Name", text: $taskName)
+                .focused(self.$isFocused)
                 .padding()
             Toggle(isOn: $taskIsReturning) {
                 Text("Returning Task")
@@ -89,6 +93,9 @@ struct CreateTaskView: View {
                     .cornerRadius(16)
             }
             Spacer()
+        }
+        .onAppear {
+            self.isFocused = true
         }
     }
 }
