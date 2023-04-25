@@ -68,23 +68,27 @@ struct CreateTaskView: View {
                 .background(.thinMaterial)
                 .cornerRadius(45)
                 .padding(.horizontal)
+                Spacer()
             }
-            Button("SPARA") {
+            Button {
                 print($choosenColor)
                 print($daysSelected)
                 print($taskName)
                 
-                
-                
                 let newTask = Task(name: taskName, weekDays: daysSelected, color: choosenColor)
-                    
                 userData.saveTaskToFirestore(task: newTask)
-        
+                
+                taskIsReturning = false
+                taskName = ""
+            
+            } label: {
+                Image(systemName: "square.and.arrow.down")
+                    .imageScale(.large)
+                    .padding()
+                    .background(.thinMaterial)
+                    .cornerRadius(16)
             }
-            .padding()
-            .background(.thinMaterial)
-            .cornerRadius(45)
-            .padding(.horizontal)
+            Spacer()
         }
     }
 }
