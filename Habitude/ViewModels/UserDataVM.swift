@@ -116,5 +116,23 @@ class UserDataVM : ObservableObject {
             print("error saving task to firestore")
         }
     }
+    
+    func loadPlannedTasksForThis(choosenDay : Date) -> [Task] {
+        var plannedTasks : [Task] = []
+        
+        for day in plannedDays {
+            if format(date: day.date) == format(date: choosenDay){
+                plannedTasks = day.tasks
+            }
+        }
+        
+        return plannedTasks
+    }
+    
+    func format(date : Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy/MM/dd"
+        return dateFormatter.string(from: date)
+    }
 }
 

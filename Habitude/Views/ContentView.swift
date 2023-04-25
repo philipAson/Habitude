@@ -48,14 +48,8 @@ struct ToDoView: View {
     let dateHandler = DateHandlerVM()
     
     @StateObject var userData = UserDataVM()
-    
-    @State var showingCreateTaskAlert = false
-    @State var showingListOfTasks = false
    
-    let today = Date()
-    let dayAfterTomorrow = DateHandlerVM().getXdaysFromNow(x: 2)
-    
-    
+    let today = Date.now
     var body: some View {
         
         VStack {
@@ -68,29 +62,16 @@ struct ToDoView: View {
                 .padding()
                 .font(.title)
             Spacer()
-            
-            NavigationStack{
+            NavigationStack {
                 List() {
-                    Section("Today") {
+                    Section("Planned") {
+                        ForEach(userData.loadPlannedTasksForThis(choosenDay: today)) { task in
+                            RowView(task: task, userData: userData)
+                        }
+                    }
+                    Section("Reoccurring") {
                         ForEach(userData.loadTasksforThis(day: today)) { task in
-                    
                             RowView(task: task, userData: userData)
-                            
-                        }
-                    }
-                    .font(.title2.bold())
-                    Section("Tomorrow") {
-                        ForEach(userData.loadTasksforThis(day: dateHandler.getXdaysFromNow(x: 1))) { task in
-                    
-                            RowView(task: task, userData: userData)
-                            
-                        }
-                    }
-                    Section(dateHandler.setDayOfWeek(date: dayAfterTomorrow)) {
-                        ForEach(userData.loadTasksforThis(day: dateHandler.getXdaysFromNow(x: 2))) { task in
-                    
-                            RowView(task: task, userData: userData)
-                            
                         }
                     }
                 }

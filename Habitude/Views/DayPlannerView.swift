@@ -12,28 +12,37 @@ struct DayPlannerView: View {
     @State var dateToPlan : Date = Date()
     
     let fiveYearsFromNow = Calendar.current.date(byAdding: .year, value: +10, to: Date())
+    let dateHandler = DateHandlerVM()
     
     @StateObject var userData = UserDataVM()
     
     var body: some View {
         
         VStack {
+            Text("w.\(dateHandler.setWeekOfYear(date: dateToPlan))")
+                .bold()
+                .padding()
+                .font(.title3)
+            Spacer()
             DatePicker(selection: $dateToPlan, in : Date()...fiveYearsFromNow!, displayedComponents: .date) {
-                Text("Select a date")
-            }
+                Text(dateHandler.setDayOfWeek(date: dateToPlan))
+                    .bold()
+                    .padding()
+                    .font(.title)}
+            .datePickerStyle(.compact)
             .padding()
-            
+            // !!!! ADD MENU FOR TASKS TO ADD HERE !!!!
             List() {
-                ForEach(userData.loadTasksforThis(day: dateToPlan)) { task in
-                    RowView(task: task, userData: userData)
+                Section("Planned") {
+                    ForEach(userData.loadPlannedTasksForThis(choosenDay: dateToPlan)) { task in
+                        RowView(task: task, userData: userData)
+                    }
                 }
-            }
-
-            List() {
-                ForEach(userData.tasks) { task in
-                    RowView(task: task, userData: userData)
+                Section("Reoccurring") {
+                    ForEach(userData.loadTasksforThis(day: dateToPlan)) { task in
+                        RowView(task: task, userData: userData)
+                    }
                 }
-
             }
         }.onAppear() {
             userData.listenToFirestore()
