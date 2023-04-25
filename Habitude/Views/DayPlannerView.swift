@@ -9,21 +9,31 @@ import SwiftUI
 
 struct DayPlannerView: View {
     
-    @State private var today = Date.now
+    @State var dateToPlan : Date = Date()
+    
+    let fiveYearsFromNow = Calendar.current.date(byAdding: .year, value: +10, to: Date())
     
     @StateObject var userData = UserDataVM()
     
     var body: some View {
+        
         VStack {
-            DatePicker(selection: $today, in : ...Date.now, displayedComponents: .date) {
+            DatePicker(selection: $dateToPlan, in : Date()...fiveYearsFromNow!, displayedComponents: .date) {
                 Text("Select a date")
             }
-            Text("skit")
+            .padding()
+            
+            List() {
+                ForEach(userData.loadTasksforThis(day: dateToPlan)) { task in
+                    RowView(task: task, userData: userData)
+                }
+            }
+
             List() {
                 ForEach(userData.tasks) { task in
                     RowView(task: task, userData: userData)
                 }
-                
+
             }
         }.onAppear() {
             userData.listenToFirestore()

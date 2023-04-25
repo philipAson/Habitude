@@ -16,6 +16,67 @@ class UserDataVM : ObservableObject {
     let dateHandler = DateHandlerVM()
     
     @Published var tasks = [Task]()
+    @Published var plannedDays = [Day]()
+    
+    // !!! LISTENER !!!
+    
+    func listenToFirestore() {
+        guard let user = auth.currentUser else {return}
+        
+        let userTasks = db.collection("users").document(user.uid).collection("tasks")
+        let userPlannedDays = db.collection("users").document(user.uid).collection("plannedDays")
+        
+        userTasks.addSnapshotListener() {
+            snapshot, err in
+            
+            guard let snapshot = snapshot else {return}
+            
+            if let err = err {
+                print("error fetching doc \(err)")
+            } else {
+                self.tasks.removeAll()
+                
+                for document in snapshot.documents {
+                    
+                    do{
+                        let task = try document.data(as : Task.self)
+                        
+                        self.tasks.append(task)
+                    } catch {
+                        print("error reading DB")
+                    }
+                }
+            }
+        }
+        
+        userPlannedDays.addSnapshotListener() {
+            snapshot, err in
+            guard let snapshot = snapshot else {return}
+            
+            if let err = err {
+                print("error fetching doc \(err)")
+            } else {
+                self.plannedDays.removeAll()
+                
+                for document in snapshot.documents {
+                    
+                    do{
+                        let day = try document.data(as : Day.self)
+                        
+                        self.plannedDays.append(day)
+                        
+                    } catch {
+                        print("error reading DB")
+                    }
+                }
+            }
+
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------
+
+    
+    // !!! TASK HANDLING !!!
     
     func saveTaskToFirestore(task : Task) {
         guard let user = auth.currentUser else {return}
@@ -28,32 +89,6 @@ class UserDataVM : ObservableObject {
         }
     }
 
-    func listenToFirestore() {
-        guard let user = auth.currentUser else {return}
-        let userTasks = db.collection("users").document(user.uid).collection("tasks")
-        
-        userTasks.addSnapshotListener() {
-            snapshot, err in
-            
-            guard let snapshot = snapshot else {return}
-            
-            if let err = err {
-                print("error fetching doc \(err)")
-            } else {
-                self.tasks.removeAll()
-                for document in snapshot.documents {
-                    
-                    do{
-                        let task = try document.data(as : Task.self)
-                        self.tasks.append(task)
-                    } catch {
-                        print("error reading DB")
-                    }
-                }
-            }
-        }
-    }
-    
     func loadTasksforThis(day : Date) -> [Task] {
         var todaysTasks : [Task] = []
         let choosenDay = dateHandler.setDayOfWeek(date: day)
@@ -65,6 +100,21 @@ class UserDataVM : ObservableObject {
         }
         
         return todaysTasks
+    }
+    //-------------------------------------------------------------------------------------------------------------
+    
+    
+    // !!! DAY HANDLING !!!
+
+    func saveDayToFirestore(day : Day) {
+        guard let user = auth.currentUser else {return}
+        let userPlannedDays = db.collection("users").document(user.uid).collection("plannedDays")
+        
+        do {
+            try userPlannedDays.addDocument(from: day)
+        } catch {
+            print("error saving task to firestore")
+        }
     }
 }
 

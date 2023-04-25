@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Day : Codable {
+struct Day : Codable, Identifiable {
     
     @DocumentID var id : String?
     

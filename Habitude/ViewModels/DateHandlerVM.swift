@@ -5,6 +5,7 @@
 //  Created by Philip Andersson on 2023-04-20.
 //
 
+import SwiftUI
 import UIKit
 import Foundation
 
@@ -12,6 +13,8 @@ struct DateHandlerVM {
     
     private let date = Date() // Create a new date object for the current date and time
     private let calendar : Calendar = Calendar.current // Get the current calendar
+    
+    @State var xDate = Date()
     
     func getDayOfWeek() -> String {
         
@@ -67,6 +70,11 @@ struct DateHandlerVM {
     
     func setWeekOfYear(date : Date) -> Int {
         return calendar.component(.weekOfYear, from: date)
+    }
+    
+    func getXdaysFromNow(x : Int) -> Date {
+        // FRÅGA DAVID (IF-LET ELLER GUARD?)
+        return Calendar.current.date(byAdding: .day, value: +x, to: Date())!
     }
     
 //    func loadTasksforThis(day : Date) -> [Task] {

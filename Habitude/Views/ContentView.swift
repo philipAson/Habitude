@@ -44,14 +44,17 @@ struct SignInView : View {
 
 struct ToDoView: View {
     
+    let db = Firestore.firestore()
+    let dateHandler = DateHandlerVM()
+    
     @StateObject var userData = UserDataVM()
     
     @State var showingCreateTaskAlert = false
     @State var showingListOfTasks = false
    
     let today = Date()
-    let db = Firestore.firestore()
-    let dateHandler = DateHandlerVM()
+    let dayAfterTomorrow = DateHandlerVM().getXdaysFromNow(x: 2)
+    
     
     var body: some View {
         
@@ -68,12 +71,29 @@ struct ToDoView: View {
             
             NavigationStack{
                 List() {
-                    ForEach(userData.loadTasksforThis(day: today)) { task in
-                
-                        RowView(task: task, userData: userData)
-                        
+                    Section("Today") {
+                        ForEach(userData.loadTasksforThis(day: today)) { task in
+                    
+                            RowView(task: task, userData: userData)
+                            
+                        }
                     }
-                }.navigationTitle("Today")
+                    .font(.title2.bold())
+                    Section("Tomorrow") {
+                        ForEach(userData.loadTasksforThis(day: dateHandler.getXdaysFromNow(x: 1))) { task in
+                    
+                            RowView(task: task, userData: userData)
+                            
+                        }
+                    }
+                    Section(dateHandler.setDayOfWeek(date: dayAfterTomorrow)) {
+                        ForEach(userData.loadTasksforThis(day: dateHandler.getXdaysFromNow(x: 2))) { task in
+                    
+                            RowView(task: task, userData: userData)
+                            
+                        }
+                    }
+                }
             }
         }.onAppear() {
             userData.listenToFirestore()
