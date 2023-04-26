@@ -134,5 +134,44 @@ class UserDataVM : ObservableObject {
         dateFormatter.dateFormat = "yy/MM/dd"
         return dateFormatter.string(from: date)
     }
+    
+    func addTaskTo(taskDone: Task, withThisDate: Date) {
+        guard let user = auth.currentUser else { return }
+        let thisDay = format(date: withThisDate)
+        let dayRef = db.collection("user").document(user.uid).collection("plannedDays")
+        let query = dayRef.whereField("dateFormatted", isEqualTo: thisDay)
+        
+        query.getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                return
+            }
+            
+            guard let snapshot = snapshot else { return }
+            
+            for document in snapshot.documents {
+                var day = try? document.data(as: Day.self)
+                day?.tasksDone.append(taskDone)
+                
+                do {
+                    try document.reference.setData(from: day)
+                    print("Task added to day successfully.")
+                } catch let error {
+                    print("Error writing day to Firestore: \(error)")
+                }
+            }
+        }
+    }
+    
+//    func addTaskTo(taskDone : Task, withThisDate : Date) {
+//        guard let user = auth.currentUser else {return}
+//        let dayRef = db.collection("user").document(user.uid).collection("plannedDays")
+//
+//        do {
+//            try dayRef.updateDa
+//        }
+//
+//
+//    }
 }
 

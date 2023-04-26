@@ -51,18 +51,17 @@ struct ToDoView: View {
    
     let today = Date.now
     var body: some View {
-        
-        VStack {
-            Text("w.\(dateHandler.getWeekOfYear())")
-                .bold()
-                .padding()
-                .font(.title3)
-            Text(dateHandler.getDayOfWeek())
-                .bold()
-                .padding()
-                .font(.title)
-            Spacer()
-            NavigationStack {
+        NavigationStack {
+            VStack {
+                Text("w.\(dateHandler.getWeekOfYear())")
+                    .bold()
+                    .padding()
+                    .font(.title3)
+                Text(dateHandler.getDayOfWeek())
+                    .bold()
+                    .padding()
+                    .font(.title)
+                Spacer()
                 List() {
                     Section("Planned") {
                         ForEach(userData.loadPlannedTasksForThis(choosenDay: today)) { task in
@@ -76,8 +75,20 @@ struct ToDoView: View {
                     }
                 }
             }
-        }.onAppear() {
+            .navigationBarItems(trailing: NavigationLink(destination: AddTaskToTasksView()) {
+                    Image(systemName: "text.badge.plus")
+            })
+        }
+        .onAppear() {
             userData.listenToFirestore()
+            
+            // MOCK DATA !!! DELETE EV !!!
+            
+//            let köpPresentTillBibbi = Task(name: "köp present till bibbi", weekDays: [], color: "orange")
+//            var thursday = Day(date: dateHandler.getXdaysFromNow(x: 1))
+//            thursday.tasks.append(köpPresentTillBibbi)
+//            userData.saveDayToFirestore(day: thursday)
+//            print(thursday.dateFormatted)
         }
     }
 }

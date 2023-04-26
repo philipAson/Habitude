@@ -15,6 +15,7 @@
 		0C5502B929F169510019B242 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5502B829F169510019B242 /* MainView.swift */; };
 		0C5502BB29F16AF30019B242 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5502BA29F16AF30019B242 /* RowView.swift */; };
 		0C5502C029F17F8E0019B242 /* UserDataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5502BF29F17F8E0019B242 /* UserDataVM.swift */; };
+		0C79779129F98A3E00562030 /* AddTaskToTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C79779029F98A3E00562030 /* AddTaskToTasksView.swift */; };
 		0C833B2429EF464B001A0894 /* HabitudeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C833B2329EF464B001A0894 /* HabitudeApp.swift */; };
 		0C833B2629EF464B001A0894 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C833B2529EF464B001A0894 /* ContentView.swift */; };
 		0C833B2829EF464C001A0894 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C833B2729EF464C001A0894 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		0C5502B829F169510019B242 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0C5502BA29F16AF30019B242 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		0C5502BF29F17F8E0019B242 /* UserDataVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataVM.swift; sourceTree = "<group>"; };
+		0C79779029F98A3E00562030 /* AddTaskToTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskToTasksView.swift; sourceTree = "<group>"; };
 		0C833B2029EF464B001A0894 /* Habitude.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Habitude.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C833B2329EF464B001A0894 /* HabitudeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitudeApp.swift; sourceTree = "<group>"; };
 		0C833B2529EF464B001A0894 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				0C5502B829F169510019B242 /* MainView.swift */,
 				0CF997FE29F5AB340084A1CC /* CreateTaskView.swift */,
 				0CF9980029F5ACD00084A1CC /* DayPlannerView.swift */,
+				0C79779029F98A3E00562030 /* AddTaskToTasksView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				0CF9980129F5ACD00084A1CC /* DayPlannerView.swift in Sources */,
 				0C95AF5229F07322008603DF /* Day.swift in Sources */,
 				0C833B2429EF464B001A0894 /* HabitudeApp.swift in Sources */,
+				0C79779129F98A3E00562030 /* AddTaskToTasksView.swift in Sources */,
 				0CF997FF29F5AB340084A1CC /* CreateTaskView.swift in Sources */,
 				0C5502BB29F16AF30019B242 /* RowView.swift in Sources */,
 				0C5502C029F17F8E0019B242 /* UserDataVM.swift in Sources */,
