@@ -122,7 +122,7 @@ class UserDataVM : ObservableObject {
         
         for day in plannedDays {
             if format(date: day.date) == format(date: choosenDay){
-                plannedTasks = day.tasks
+                plannedTasks.append(contentsOf: day.self.tasks)
             }
         }
         
@@ -162,6 +162,51 @@ class UserDataVM : ObservableObject {
             }
         }
     }
+
+
+    
+    func addToDay (date: Date, tasks: [Task]) {
+        
+        guard let user = auth.currentUser else {return}
+        let thisDay = format(date: date)
+        let dayRef = db.collection("users").document(user.uid).collection("plannedDays")
+        let query = dayRef.whereField("dateFormatted", isEqualTo: thisDay)
+        
+        var dayExistsInDb = false
+        for day in plannedDays {
+            
+            if day.dateFormatted == thisDay {
+                
+                dayExistsInDb = true
+                query.getDocuments { (snapshot, error) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                        return
+                    }
+                    
+                    guard let snapshot = snapshot else { return }
+                    
+                    for document in snapshot.documents {
+                        var day = try? document.data(as: Day.self)
+                        day?.tasks.append(contentsOf: tasks)
+                        
+                        do {
+                            try document.reference.setData(from: day)
+                            print("Task added to day successfully.")
+                        } catch let error {
+                            print("Error writing day to Firestore: \(error)")
+                        }
+                    }
+                }
+            }
+            if dayExistsInDb == false {
+                var newDay = Day(date: date)
+                newDay.tasks.append(contentsOf: tasks)
+                saveDayToFirestore(day: newDay)
+            }
+        }
+    }
+    
     
 //    func addTaskTo(taskDone : Task, withThisDate : Date) {
 //        guard let user = auth.currentUser else {return}

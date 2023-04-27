@@ -36,12 +36,12 @@ struct DayPlannerView: View {
                 List() {
                     Section("Planned") {
                         ForEach(userData.loadPlannedTasksForThis(choosenDay: dateToPlan)) { task in
-                            RowView(task: task, userData: userData)
+                            RowView(task: task)
                         }
                     }
                     Section("Reoccurring") {
                         ForEach(userData.loadTasksforThis(day: dateToPlan)) { task in
-                            RowView(task: task, userData: userData)
+                            RowView(task: task)
                         }
                     }
                 }

@@ -8,8 +8,46 @@
 import SwiftUI
 
 struct AddTaskToTasksView: View {
+    
+    @StateObject var userData = UserDataVM()
+    @State var tasksToAdd : [Task] = []
+    @Environment(\.presentationMode) var presentationMode
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        NavigationView {
+            List {
+                Section("add these") {
+                    ForEach(tasksToAdd) { task in
+                        RowView(task: task)
+                    }
+                }
+                Section("Tasks") {
+                    ForEach(userData.tasks) { task in
+                        RowView(task: task)
+                            .onTapGesture(count: 2, perform: {
+                                if let index = userData.tasks.firstIndex(of: task) {
+                                    userData.tasks.remove(at: index)
+                                    tasksToAdd.append(task)
+                                }
+                                
+                            })
+                    }
+                }
+            }.onAppear() {
+                userData.listenToFirestore()
+            }
+        }.navigationBarItems(
+            trailing:
+                Button(action: {
+                    userData.addToDay(date: Date.now, tasks: tasksToAdd)
+                    presentationMode.wrappedValue.dismiss()
+                })
+            {
+                Image(systemName: "square.and.arrow.down")
+            }
+        )
     }
 }
 

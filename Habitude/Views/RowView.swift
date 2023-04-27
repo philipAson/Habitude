@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RowView: View {
     let task : Task
-    let userData : UserDataVM
     
     let colors: [String: Color] = ["orange": .orange, "teal": .teal, "cyan": .cyan, "mint": .mint, "blue": .blue, "black": .black]
     

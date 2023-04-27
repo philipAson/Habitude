@@ -48,6 +48,7 @@ struct ToDoView: View {
     let dateHandler = DateHandlerVM()
     
     @StateObject var userData = UserDataVM()
+    @State var tasks : [Task] = []
    
     let today = Date.now
     var body: some View {
@@ -64,13 +65,21 @@ struct ToDoView: View {
                 Spacer()
                 List() {
                     Section("Planned") {
+                        // VAFALLS!!!!
                         ForEach(userData.loadPlannedTasksForThis(choosenDay: today)) { task in
-                            RowView(task: task, userData: userData)
+                            RowView(task: task)
+                                .onTapGesture(count: 2) {
+                                    for task in userData.loadPlannedTasksForThis(choosenDay: today) {
+                                        print(task.name)
+                                        print(task.color)
+                                        print("")
+                                    }
+                                }
                         }
                     }
                     Section("Reoccurring") {
                         ForEach(userData.loadTasksforThis(day: today)) { task in
-                            RowView(task: task, userData: userData)
+                            RowView(task: task)
                         }
                     }
                 }
@@ -82,13 +91,15 @@ struct ToDoView: View {
         .onAppear() {
             userData.listenToFirestore()
             
+            
             // MOCK DATA !!! DELETE EV !!!
             
 //            let köpPresentTillBibbi = Task(name: "köp present till bibbi", weekDays: [], color: "orange")
-//            var thursday = Day(date: dateHandler.getXdaysFromNow(x: 1))
+//            let köphundmat = Task(name: "köp hundmat", weekDays: [], color: "mint")
+//            var thursday = Day(date: today)
 //            thursday.tasks.append(köpPresentTillBibbi)
+//            thursday.tasks.append(köphundmat)
 //            userData.saveDayToFirestore(day: thursday)
-//            print(thursday.dateFormatted)
         }
     }
 }
