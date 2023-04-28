@@ -49,8 +49,8 @@ struct ToDoView: View {
     
     @StateObject var userData = UserDataVM()
     @State var tasks : [Task] = []
-   
-    let today = Date.now
+    @State var today = Date.now
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -66,14 +66,10 @@ struct ToDoView: View {
                 List() {
                     Section("Planned") {
                         // VAFALLS!!!!
-                        ForEach(userData.loadPlannedTasksForThis(choosenDay: today)) { task in
+                        ForEach(userData.loadPlannedTasksForThis(choosenDay: today), id: \.self) { task in
                             RowView(task: task)
                                 .onTapGesture(count: 2) {
-                                    for task in userData.loadPlannedTasksForThis(choosenDay: today) {
-                                        print(task.name)
-                                        print(task.color)
-                                        print("")
-                                    }
+                                    print("farcturedButHole")
                                 }
                         }
                     }
@@ -84,7 +80,7 @@ struct ToDoView: View {
                     }
                 }
             }
-            .navigationBarItems(trailing: NavigationLink(destination: AddTaskToTasksView()) {
+            .navigationBarItems(trailing: NavigationLink(destination: AddTaskToTasksView(dayToAddTo: $today)) {
                     Image(systemName: "text.badge.plus")
             })
         }

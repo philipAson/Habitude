@@ -10,7 +10,12 @@ import SwiftUI
 struct AddTaskToTasksView: View {
     
     @StateObject var userData = UserDataVM()
+    @State var dateHandler = DateHandlerVM()
     @State var tasksToAdd : [Task] = []
+    @State var saveButtonTapped = false
+    
+    @Binding var dayToAddTo : Date
+    
     @Environment(\.presentationMode) var presentationMode
     
     
@@ -18,7 +23,7 @@ struct AddTaskToTasksView: View {
         
         NavigationView {
             List {
-                Section("add these") {
+                Section("add these to: \(dateHandler.setDayOfWeek(date: dayToAddTo)): w.\(dateHandler.setWeekOfYear(date: dayToAddTo))") {
                     ForEach(tasksToAdd) { task in
                         RowView(task: task)
                     }
@@ -41,18 +46,20 @@ struct AddTaskToTasksView: View {
         }.navigationBarItems(
             trailing:
                 Button(action: {
-                    userData.addToDay(date: Date.now, tasks: tasksToAdd)
+                    userData.addToDay(date: dayToAddTo, tasks: tasksToAdd)
                     presentationMode.wrappedValue.dismiss()
+                    self.saveButtonTapped.toggle()
                 })
             {
                 Image(systemName: "square.and.arrow.down")
             }
+            .disabled(saveButtonTapped)
         )
     }
 }
 
-struct AddTaskToTasksView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddTaskToTasksView()
-    }
-}
+//struct AddTaskToTasksView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddTaskToTasksView(dayToAddTo: Date())
+//    }
+//}

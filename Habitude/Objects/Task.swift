@@ -8,7 +8,8 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Task : Codable, Identifiable, Equatable {
+// rör ej!!
+struct Task : Codable, Identifiable, Equatable, Hashable {
     
     @DocumentID var id : String?
     

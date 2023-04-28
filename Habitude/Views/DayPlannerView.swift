@@ -35,7 +35,7 @@ struct DayPlannerView: View {
                 
                 List() {
                     Section("Planned") {
-                        ForEach(userData.loadPlannedTasksForThis(choosenDay: dateToPlan)) { task in
+                        ForEach(userData.loadPlannedTasksForThis(choosenDay: dateToPlan), id: \.self) { task in
                             RowView(task: task)
                         }
                     }
@@ -45,7 +45,7 @@ struct DayPlannerView: View {
                         }
                     }
                 }
-            }.navigationBarItems(trailing: NavigationLink(destination: AddTaskToTasksView()) {
+            }.navigationBarItems(trailing: NavigationLink(destination: AddTaskToTasksView(dayToAddTo: $dateToPlan)) {
                 Image(systemName: "text.badge.plus")
             })
             

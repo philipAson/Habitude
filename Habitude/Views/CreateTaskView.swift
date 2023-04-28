@@ -19,7 +19,6 @@ struct CreateTaskView: View {
     @State var daysSelected: [String] = []
     @State var choosenColor : String = ""
     
-    
     let colors: [String: Color] = ["orange": .orange, "teal": .teal, "cyan": .cyan, "mint": .mint, "blue": .blue, "black": .black]
     
     var body: some View {

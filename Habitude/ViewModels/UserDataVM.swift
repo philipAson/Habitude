@@ -17,6 +17,7 @@ class UserDataVM : ObservableObject {
     
     @Published var tasks = [Task]()
     @Published var plannedDays = [Day]()
+    @Published var day = Date()
     
     // !!! LISTENER !!!
     
@@ -199,11 +200,12 @@ class UserDataVM : ObservableObject {
                     }
                 }
             }
-            if dayExistsInDb == false {
-                var newDay = Day(date: date)
-                newDay.tasks.append(contentsOf: tasks)
-                saveDayToFirestore(day: newDay)
-            }
+            
+        }
+        if dayExistsInDb == false {
+            var newDay = Day(date: date)
+            newDay.tasks.append(contentsOf: tasks)
+            saveDayToFirestore(day: newDay)
         }
     }
     
