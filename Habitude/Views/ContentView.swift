@@ -65,17 +65,23 @@ struct ToDoView: View {
                 Spacer()
                 List() {
                     Section("Planned") {
-                        // VAFALLS!!!!
                         ForEach(userData.loadPlannedTasksForThis(choosenDay: today), id: \.self) { task in
                             RowView(task: task)
                                 .onTapGesture(count: 2) {
-                                    print("farcturedButHole")
+                                    //addTaskToTasksDone
+                                    // Not Working!!!
+//                                    userData.addTaskToTasksDone(task: task, date: today)
+                                    print("farcturedButWhole")
                                 }
                         }
                     }
                     Section("Reoccurring") {
                         ForEach(userData.loadTasksforThis(day: today)) { task in
                             RowView(task: task)
+                                .onTapGesture(count: 2) {
+                                    //addTaskToTasksDone
+                                    print("jodåSåAttEeeeh")
+                                }
                         }
                     }
                 }
