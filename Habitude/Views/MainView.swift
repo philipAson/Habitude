@@ -15,14 +15,14 @@ struct MainView: View {
                     Label("ToDo", systemImage: "calendar.day.timeline.leading")
                 }
             
-            DayPlannerView()
+            OverView()
                 .tabItem{
-                    Label("Planner", systemImage: "calendar.badge.plus")
+                    Label("Overview", systemImage: "chart.bar.fill")
                 }
             
-            CreateTaskView()
+            EditTasksView()
                 .tabItem{
-                    Label("Create Task", systemImage: "text.badge.plus")
+                    Label("Edit Tasks", systemImage: "doc.badge.gearshape")
                 }
         }
     }

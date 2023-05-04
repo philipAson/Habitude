@@ -46,44 +46,58 @@ struct ToDoView: View {
     
     let db = Firestore.firestore()
     let dateHandler = DateHandlerVM()
+    let fiveYearsFromNow = Calendar.current.date(byAdding: .year, value: +10, to: Date())
     
     @StateObject var userData = UserDataVM()
+    
     @State var tasks : [Task] = []
-    @State var today = Date.now
+    @State var choosenDate : Date = Date()
     
     var body: some View {
         NavigationStack {
             VStack {
-                Text("w.\(dateHandler.getWeekOfYear())")
+                Text("w.\(dateHandler.setWeekOfYear(date: choosenDate))")
                     .bold()
                     .padding()
                     .font(.title3)
-                Text(dateHandler.getDayOfWeek())
-                    .bold()
-                    .padding()
-                    .font(.title)
                 Spacer()
+                DatePicker(selection: $choosenDate, in : Date()...fiveYearsFromNow!, displayedComponents: .date) {
+                    Text(dateHandler.setDayOfWeek(date: choosenDate))
+                        .bold()
+                        .padding()
+                        .font(.title)}
+                .datePickerStyle(.compact)
+                .padding()
                 List() {
+                    Section("Done") {
+                        ForEach(userData.loadTasksDoneForThis(choosenDay: choosenDate), id: \.self) { task in
+                            TasksDoneRowView(task: task)
+                        }
+                    }
                     Section("Planned") {
-                        ForEach(userData.loadPlannedTasksForThis(choosenDay: today), id: \.self) { task in
+                        ForEach(userData.loadPlannedTasksForThis(choosenDay: choosenDate), id: \.self) { task in
                             RowView(task: task)
                                 .onTapGesture(count: 2) {
-                                    userData.addTaskToTasksDone(date: today, taskDone: task)
+                                    userData.addTaskToTasksDone(date: choosenDate, taskDone: task)
                                 }
                         }
                     }
                     Section("Reoccurring") {
-                        ForEach(userData.loadTasksforThis(day: today)) { task in
+                        ForEach(userData.loadTasksforThis(day: choosenDate)) { task in
                             RowView(task: task)
                                 .onTapGesture(count: 2) {
-                                    userData.addTaskToTasksDone(date: today, taskDone: task)
+                                    userData.addTaskToTasksDone(date: choosenDate, taskDone: task)
                                 }
                         }
                     }
                 }
             }
-            .navigationBarItems(trailing: NavigationLink(destination: AddTaskToTasksView(dayToAddTo: $today)) {
+            .navigationBarItems(trailing: NavigationLink(destination: AddTaskToTasksView(dayToAddTo: $choosenDate)) {
                     Image(systemName: "text.badge.plus")
+            })
+            .navigationBarItems(leading: NavigationLink(destination:
+                CreateTaskView()) {
+                    Image(systemName: "plus.circle")
             })
         }
         .onAppear() {

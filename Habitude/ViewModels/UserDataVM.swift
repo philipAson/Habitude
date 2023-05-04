@@ -125,6 +125,18 @@ class UserDataVM : ObservableObject {
         
         return plannedTasks
     }
+    
+    func loadTasksDoneForThis(choosenDay : Date) -> [Task] {
+        var tasksDone : [Task] = []
+        
+        for day in plannedDays {
+            if format(date: day.date) == format(date: choosenDay){
+                tasksDone.append(contentsOf: day.self.tasksDone)
+            }
+        }
+        
+        return tasksDone
+    }
 
     func addTaskToTasksDone(date: Date, taskDone: Task) {
         
@@ -135,7 +147,7 @@ class UserDataVM : ObservableObject {
         
         var dayExistsInDb = false
         for day in plannedDays {
-            // if a day object exists in db to this
+            // if a Day object exists in db to this
             if day.dateFormatted == thisDay {
                 
                 dayExistsInDb = true
