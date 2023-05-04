@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct EditTasksView: View {
+    @ObservedObject var userData = UserDataVM()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text("Edit Tasks")
+                .font(.title.bold())
+                .padding()
+            List() {
+                ForEach(userData.tasks) { task in
+                    RowView(task: task)
+                        .onLongPressGesture {
+                            print("GoTo -> Edit this (Task)")
+                        }
+                }
+            }
+        }.onAppear() {
+            userData.listenToFirestore()
+        }
     }
 }
 

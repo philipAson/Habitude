@@ -44,7 +44,6 @@ struct SignInView : View {
 
 struct ToDoView: View {
     
-    let db = Firestore.firestore()
     let dateHandler = DateHandlerVM()
     let fiveYearsFromNow = Calendar.current.date(byAdding: .year, value: +10, to: Date())
     
@@ -102,16 +101,6 @@ struct ToDoView: View {
         }
         .onAppear() {
             userData.listenToFirestore()
-            
-            
-            // MOCK DATA !!! DELETE EV !!!
-            
-//            let köpPresentTillBibbi = Task(name: "köp present till bibbi", weekDays: [], color: "orange")
-//            let köphundmat = Task(name: "köp hundmat", weekDays: [], color: "mint")
-//            var thursday = Day(date: today)
-//            thursday.tasks.append(köpPresentTillBibbi)
-//            thursday.tasks.append(köphundmat)
-//            userData.saveDayToFirestore(day: thursday)
         }
     }
 }

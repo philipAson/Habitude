@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OverView: View {
     
-    let userData = UserDataVM()
+    @ObservedObject var userData = UserDataVM()
     let dateHandler = DateHandlerVM()
     let gold = UIColor(red: 252.0/255.0, green: 194.0/255.0, blue: 0, alpha: 1.0)
     
@@ -29,10 +29,14 @@ struct OverView: View {
             DatePicker("to", selection: $to, in: dateHandler.getDateOfXdaysBeforeNow(x: 360)...dateHandler.getDateOfXdaysFromNow(x: 360), displayedComponents: .date)
                 .padding()
                 .font(.title2.bold())
-            List(userData.loadAllTasksDone(from: from, to: to).map { taskName, count in
-                CounterRowView(taskName: taskName, taskCount: count)
-            }.sorted(by: { $0.taskCount > $1.taskCount }), id: \.taskName) { taskRow in
-                taskRow
+            if userData.tasks.count > 0 {
+                List(userData.loadAllTasksDone(from: from, to: to).map { taskName, count in
+                    CounterRowView(taskName: taskName, taskCount: count)
+                }.sorted(by: { $0.taskCount > $1.taskCount }), id: \.taskName) { taskRow in
+                    taskRow
+                }
+            } else {
+                Text("Loading...")
             }
         }
         .onAppear() {
@@ -40,3 +44,4 @@ struct OverView: View {
         }
     }
 }
+
