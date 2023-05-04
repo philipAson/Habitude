@@ -68,10 +68,7 @@ struct ToDoView: View {
                         ForEach(userData.loadPlannedTasksForThis(choosenDay: today), id: \.self) { task in
                             RowView(task: task)
                                 .onTapGesture(count: 2) {
-                                    //addTaskToTasksDone
-                                    // Not Working!!!
-//                                    userData.addTaskToTasksDone(task: task, date: today)
-                                    print("farcturedButWhole")
+                                    userData.addTaskToTasksDone(date: today, taskDone: task)
                                 }
                         }
                     }
@@ -79,8 +76,7 @@ struct ToDoView: View {
                         ForEach(userData.loadTasksforThis(day: today)) { task in
                             RowView(task: task)
                                 .onTapGesture(count: 2) {
-                                    //addTaskToTasksDone
-                                    print("jodåSåAttEeeeh")
+                                    userData.addTaskToTasksDone(date: today, taskDone: task)
                                 }
                         }
                     }
