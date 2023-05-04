@@ -72,22 +72,12 @@ struct DateHandlerVM {
         return calendar.component(.weekOfYear, from: date)
     }
     
-    func getXdaysFromNow(x : Int) -> Date {
+    func getDateOfXdaysFromNow(x : Int) -> Date {
         // FRÅGA DAVID (IF-LET ELLER GUARD?)
         return Calendar.current.date(byAdding: .day, value: +x, to: Date())!
     }
-    
-//    func loadTasksforThis(day : Date) -> [Task] {
-//        var todaysTasks : [Task] = []
-//        let choosenDay = setDayOfWeek(date: day)
-//
-//        for task in userdata.tasks {
-//            if task.weekDays.contains(choosenDay){
-//                todaysTasks.append(task)
-//            }
-//        }
-//
-//        return todaysTasks
-//    }
-    
+    func getDateOfXdaysBeforeNow(x : Int) -> Date {
+        // FRÅGA DAVID (IF-LET ELLER GUARD?)
+        return Calendar.current.date(byAdding: .day, value: -x, to: Date())!
+    }
 }

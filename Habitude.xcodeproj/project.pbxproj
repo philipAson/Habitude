@@ -10,6 +10,7 @@
 		0C0B99EA2A03DB80007E94CD /* TasksDoneRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B99E92A03DB80007E94CD /* TasksDoneRowView.swift */; };
 		0C0B99EC2A041A9A007E94CD /* OverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B99EB2A041A9A007E94CD /* OverView.swift */; };
 		0C0B99EE2A041D27007E94CD /* EditTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B99ED2A041D27007E94CD /* EditTasksView.swift */; };
+		0C0B99F02A0439DE007E94CD /* CounterRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B99EF2A0439DE007E94CD /* CounterRowView.swift */; };
 		0C5502AC29F11DE70019B242 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0C5502AB29F11DE70019B242 /* FirebaseAuth */; };
 		0C5502AE29F11DE70019B242 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0C5502AD29F11DE70019B242 /* FirebaseFirestore */; };
 		0C5502B029F11DE70019B242 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0C5502AF29F11DE70019B242 /* FirebaseFirestoreSwift */; };
@@ -52,6 +53,7 @@
 		0C0B99E92A03DB80007E94CD /* TasksDoneRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksDoneRowView.swift; sourceTree = "<group>"; };
 		0C0B99EB2A041A9A007E94CD /* OverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverView.swift; sourceTree = "<group>"; };
 		0C0B99ED2A041D27007E94CD /* EditTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTasksView.swift; sourceTree = "<group>"; };
+		0C0B99EF2A0439DE007E94CD /* CounterRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterRowView.swift; sourceTree = "<group>"; };
 		0C5502B129F121340019B242 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0C5502B329F12FE50019B242 /* DateHandlerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandlerVM.swift; sourceTree = "<group>"; };
 		0C5502B829F169510019B242 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				0C0B99E92A03DB80007E94CD /* TasksDoneRowView.swift */,
 				0C0B99EB2A041A9A007E94CD /* OverView.swift */,
 				0C0B99ED2A041D27007E94CD /* EditTasksView.swift */,
+				0C0B99EF2A0439DE007E94CD /* CounterRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C0B99F02A0439DE007E94CD /* CounterRowView.swift in Sources */,
 				0C0B99EA2A03DB80007E94CD /* TasksDoneRowView.swift in Sources */,
 				0C833B2629EF464B001A0894 /* ContentView.swift in Sources */,
 				0C5502B929F169510019B242 /* MainView.swift in Sources */,

@@ -184,28 +184,6 @@ class UserDataVM : ObservableObject {
         }
     }
     
-    //-------------------------------------------------------------------------------------------------------------
-    
-    
-    // !!! DAY HANDLING !!!
-    
-    func saveDayToFirestore(day : Day) {
-        guard let user = auth.currentUser else {return}
-        let userPlannedDays = db.collection("users").document(user.uid).collection("plannedDays")
-        
-        do {
-            try userPlannedDays.addDocument(from: day)
-        } catch {
-            print("error saving task to firestore")
-        }
-    }
-    
-    func format(date : Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yy/MM/dd"
-        return dateFormatter.string(from: date)
-    }
-    
     func addToDay(date: Date, tasks: [Task]) {
         
         guard let user = auth.currentUser else {return}
@@ -248,6 +226,49 @@ class UserDataVM : ObservableObject {
             newDay.tasks.append(contentsOf: tasks)
             saveDayToFirestore(day: newDay)
         }
+    }
+    
+    //-------------------------------------------------------------------------------------------------------------
+    
+    
+    // !!! DAY HANDLING !!!
+    
+    func saveDayToFirestore(day : Day) {
+        guard let user = auth.currentUser else {return}
+        let userPlannedDays = db.collection("users").document(user.uid).collection("plannedDays")
+        
+        do {
+            try userPlannedDays.addDocument(from: day)
+        } catch {
+            print("error saving task to firestore")
+        }
+    }
+    
+    func format(date : Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy/MM/dd"
+        return dateFormatter.string(from: date)
+    }
+    
+    func loadAllTasksDone(from : Date, to : Date) -> [String: Int] {
+        
+        var taskCount : [String: Int] = [:]
+            
+        for day in plannedDays{
+            // for Day object in DateRange
+            if day.date >= from && day.date <= to {
+                for task in day.tasksDone{
+                    // adding one to the (counter if it itterates over a Task Object with the same name
+                    if let count = taskCount[task.name] {
+                        taskCount[task.name] = count + 1
+                    } else {
+                        taskCount[task.name] = 1
+                    }
+                }
+            }
+        }
+        
+        return taskCount
     }
 }
 
