@@ -103,6 +103,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0B99F12A044F36007E94CD /* RowViews */ = {
+			isa = PBXGroup;
+			children = (
+				0C5502BA29F16AF30019B242 /* RowView.swift */,
+				0C0B99EF2A0439DE007E94CD /* CounterRowView.swift */,
+				0C0B99E92A03DB80007E94CD /* TasksDoneRowView.swift */,
+			);
+			path = RowViews;
+			sourceTree = "<group>";
+		};
 		0C5502B529F12FEF0019B242 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,15 +125,13 @@
 		0C5502BC29F16B170019B242 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0C0B99F12A044F36007E94CD /* RowViews */,
 				0C833B2529EF464B001A0894 /* ContentView.swift */,
-				0C5502BA29F16AF30019B242 /* RowView.swift */,
 				0C5502B829F169510019B242 /* MainView.swift */,
 				0CF997FE29F5AB340084A1CC /* CreateTaskView.swift */,
 				0C79779029F98A3E00562030 /* AddTaskToTasksView.swift */,
-				0C0B99E92A03DB80007E94CD /* TasksDoneRowView.swift */,
 				0C0B99EB2A041A9A007E94CD /* OverView.swift */,
 				0C0B99ED2A041D27007E94CD /* EditTasksView.swift */,
-				0C0B99EF2A0439DE007E94CD /* CounterRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
