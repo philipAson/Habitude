@@ -51,6 +51,7 @@ struct ToDoView: View {
     
     @State var tasks : [Task] = []
     @State var choosenDate : Date = Date()
+    @State var isNotificationPresented = false
     
     var body: some View {
         NavigationStack {
@@ -79,6 +80,10 @@ struct ToDoView: View {
                                 .onTapGesture(count: 2) {
                                     userData.addTaskToTasksDone(date: choosenDate, taskDone: task)
                                 }
+                                .onLongPressGesture{
+                                    isNotificationPresented.toggle()
+                                    print(isNotificationPresented)
+                                }
                         }
                     }
                     Section("Reoccurring") {
@@ -90,6 +95,7 @@ struct ToDoView: View {
                         }
                     }
                 }
+                NavigationLink("", destination: NotificationListView(), isActive: $isNotificationPresented)
             }
             .navigationBarItems(trailing: NavigationLink(destination: AddTaskToTasksView(dayToAddTo: $choosenDate)) {
                     Image(systemName: "text.badge.plus")
@@ -102,6 +108,7 @@ struct ToDoView: View {
         .onAppear() {
             userData.listenToFirestore()
         }
+        
     }
 }
 
