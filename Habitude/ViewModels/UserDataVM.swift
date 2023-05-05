@@ -151,7 +151,7 @@ class UserDataVM : ObservableObject {
             if day.dateFormatted == thisDay {
                 
                 dayExistsInDb = true
-                
+                // do a query based on date.formatted
                 query.getDocuments { (snapshot, error) in
                     if let error = error {
                         print("Error getting documents: \(error)")
@@ -162,11 +162,15 @@ class UserDataVM : ObservableObject {
 
                     
                     for document in snapshot.documents {
+                        // try handle it as a Day-Object
                         var day = try? document.data(as: Day.self)
+                        // append the task you want to mark as done
                         day?.tasksDone.append(taskDone)
+                        // remove the task where task.name in Day-objects task == task.name you have declared done.
                         day?.tasks.removeAll(where: {$0.name == taskDone.name})
                         
                         do {
+                            // set(update) data from that day object
                             try document.reference.setData(from: day)
                             print("Task added to day.tasksDone successfully.")
                         } catch let error {
@@ -197,7 +201,7 @@ class UserDataVM : ObservableObject {
             if day.dateFormatted == thisDay {
                 
                 dayExistsInDb = true
-                
+                // do a query based on date.formatted
                 query.getDocuments { (snapshot, error) in
                     if let error = error {
                         print("Error getting documents: \(error)")
@@ -205,12 +209,15 @@ class UserDataVM : ObservableObject {
                     }
                     
                     guard let snapshot = snapshot else { return }
-                    
+                    // for doc
                     for document in snapshot.documents {
+                        // try handle it as a Day-Object
                         var day = try? document.data(as: Day.self)
+                        // append the content of the tasks you want to add to that Day
                         day?.tasks.append(contentsOf: tasks)
                         
                         do {
+                            // set(update) data from that day object
                             try document.reference.setData(from: day)
                             print("Task added to day.tasks successfully.")
                         } catch let error {
@@ -249,7 +256,7 @@ class UserDataVM : ObservableObject {
         dateFormatter.dateFormat = "yy/MM/dd"
         return dateFormatter.string(from: date)
     }
-    
+    // Func for checking what tasks and how many times you have executed it based on a date range (from ->to).
     func loadAllTasksDone(from : Date, to : Date) -> [String: Int] {
         
         var taskCount : [String: Int] = [:]
@@ -267,7 +274,7 @@ class UserDataVM : ObservableObject {
                 }
             }
         }
-        
+        // returns task.name as String and taskDone x times as Int
         return taskCount
     }
 }

@@ -15,7 +15,7 @@ struct DateHandlerVM {
     private let calendar : Calendar = Calendar.current // Get the current calendar
     
     @State var xDate = Date()
-    
+    // getter for day of week -> String
     func getDayOfWeek() -> String {
         
         let weekday = calendar.component(.weekday, from: date)
@@ -39,7 +39,7 @@ struct DateHandlerVM {
             
         }
     }
-    
+    // setter for day of week based of Date->Func->String!
     func setDayOfWeek(date : Date) -> String {
         
         let weekday = calendar.component(.weekday, from: date)
@@ -63,21 +63,19 @@ struct DateHandlerVM {
             
         }
     }
-    
+    // getter for week of year -> Int
     func getWeekOfYear() -> Int {
         return calendar.component(.weekOfYear, from: date) // Get the week of the year component from the date object
     }
-    
+    // setter for week of year Date->func->Int
     func setWeekOfYear(date : Date) -> Int {
         return calendar.component(.weekOfYear, from: date)
     }
     
     func getDateOfXdaysFromNow(x : Int) -> Date {
-        // FRÅGA DAVID (IF-LET ELLER GUARD?)
         return Calendar.current.date(byAdding: .day, value: +x, to: Date())!
     }
     func getDateOfXdaysBeforeNow(x : Int) -> Date {
-        // FRÅGA DAVID (IF-LET ELLER GUARD?)
         return Calendar.current.date(byAdding: .day, value: -x, to: Date())!
     }
 }
