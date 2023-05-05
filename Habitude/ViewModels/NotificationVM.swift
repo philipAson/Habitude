@@ -59,8 +59,4 @@ final class NotificationVM: ObservableObject {
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: completion)
     }
-    
-    func clearAllNotifications() {
-        notifications.removeAll()
-    }
 }

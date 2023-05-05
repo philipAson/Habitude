@@ -37,12 +37,6 @@ struct NotificationListView: View {
             Image(systemName: "plus.circle")
                 .imageScale(.large)
         })
-        .navigationBarItems(trailing: Button {
-            notificationVM.clearAllNotifications()
-        } label: {
-            Image(systemName: "minus.circle")
-                .imageScale(.large)
-        })
         .sheet(isPresented: $isCreatePresented) {
             NavigationView {
                 CreateNotificationView(
